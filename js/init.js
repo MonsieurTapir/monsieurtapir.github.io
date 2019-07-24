@@ -1,3 +1,4 @@
+
 function offset(elt) {
         var rect = elt.getBoundingClientRect(), bodyElt = document.body;
         var sct=window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0
@@ -8,8 +9,16 @@ function offset(elt) {
         }
     }
 
+function correctWidth(){
+  var parentwidth =  document.querySelector('.container').offsetWidth;
+  elems = document.querySelectorAll('.underlined');
+  elems.forEach(function(currentValue){
+    currentValue.style.width = parentwidth.toString()+"px";
+  });
+}
+window.onresize=correctWidth;
 document.addEventListener('DOMContentLoaded', function() {
-  window.scrollTo(0,0);
+  correctWidth();
   var elems = document.querySelectorAll('#left-one');
   var instances = M.Sidenav.init(elems, {});
 
